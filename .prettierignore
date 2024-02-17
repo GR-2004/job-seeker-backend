@@ -1,0 +1,15 @@
+generators
+coverage
+build
+# fixtures
+LICENSE
+README.md
+.gitattributes
+.gitignore
+.gitkeep
+.prettierignore
+/.vscode
+/node_modules
+./dist
+*.env
+.env
