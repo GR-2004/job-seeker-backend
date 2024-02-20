@@ -10,8 +10,8 @@ const userSchema = new mongoose.Schema(
             require: [true, "Please provide your email"],
             unique: true,
             lowercase: true,
-            maxlength: [3, "name must contain at least 3 characters!"],
-            minlength: [10, "name cannot exceed 10 characters!"],
+            minlength: [3, "name must contain at least 3 characters!"],
+            maxlength: [10, "name cannot exceed 10 characters!"],
             trim: true,
             index: true
         },
@@ -30,14 +30,14 @@ const userSchema = new mongoose.Schema(
             index: true,
         },
         phone: {
-            type: Number,
+            type: String,
             required: [true, "please provide your phone number..."],
             validate: [validator.isMobilePhone, "please provide a valid mobile number"]
         },
         password: {
             type: String,
-            maxlength: [8, "name must contain at least 8 characters!"],
-            minlength: [32, "name cannot exceed 32 characters!"],
+            minlength: [8, "name must contain at least 8 characters!"],
+            maxlength: [32, "name cannot exceed 32 characters!"],
         },
         role: {
             type: String,
