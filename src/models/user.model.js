@@ -42,7 +42,7 @@ const userSchema = new mongoose.Schema(
         role: {
             type: String,
             required: [true, "please provide your role"],
-            enum: ['Job Seeker', "Employer"],
+            enum: ['Job Seeker', "Recruiter"],
         },
         refreshToken: {
             type: String
