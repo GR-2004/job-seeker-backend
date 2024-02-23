@@ -8,7 +8,8 @@ import {
     refreshAccessToken,
     updateUserProfile,
     getUserProfile,
-    getHistory
+    getHistory,
+    getCurrentUser
 } from "../controllers/user.controller.js";
 
 
@@ -24,7 +25,7 @@ router.route("/refresh-token").post(refreshAccessToken);
 router.route("/update-account").patch(verifyJWT, updateUserProfile);
 router.route("/c/:username").get(verifyJWT, getUserProfile);
 router.route("/history").get(verifyJWT, getHistory);
-
+router.route("/getUser").get(verifyJWT, getCurrentUser); //done
 
 
 export default router
