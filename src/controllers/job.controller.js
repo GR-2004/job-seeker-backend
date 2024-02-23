@@ -31,7 +31,7 @@ const postJob = asyncHandler( async (req, res) => {
             requiredExperience,
             requiredSkills,
             employmentType,
-            postedBy: req.user.fullname
+            postedBy: req.user._id
         })
 
         if(!job){
@@ -116,7 +116,7 @@ const getMyPostedJobs = asyncHandler(async (req, res) => {
         if(req.user.role === "Job Seeker"){
             throw new ApiError(400, "Job seeker can not post a job")
         }
-        const job = await Job.find({postedBy: req.user.fullname})
+        const job = await Job.find({postedBy: req.user._id})
 
         if(!job){
             throw new ApiError(500, "something went wrong while fetching your posted jobs")

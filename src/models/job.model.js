@@ -43,7 +43,8 @@ const jobSchema = new mongoose.Schema(
             default: Date.now,
         },
         postedBy: {
-            type: String,
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "User",
             required: true,
         },  
         expired: {
