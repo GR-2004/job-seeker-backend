@@ -13,7 +13,7 @@ const router = Router();
 //secured routes
 router.route("/recruiter/getAllApplications").get(verifyJWT, recruiterGetAllApplications)
 router.route("/jobSeeker/getAllApplications").get(verifyJWT, jobSeekerGetAllApplications)
-router.route("/jobSeeker/deleteApplication/:id").delete(verifyJWT, jobSeekerDeleteApplication)
+router.route("/deleteApplication/:id").delete(verifyJWT, jobSeekerDeleteApplication)
 router.route("/postApplication/:jobID").post(verifyJWT, upload.single("resume"), postApplication)
 
 export default router
