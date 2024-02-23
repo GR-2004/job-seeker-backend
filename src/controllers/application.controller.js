@@ -15,7 +15,7 @@ const recruiterGetAllApplications = asyncHandler(async (req, res) => {
         "Job seeker is not allowed to access this resources!"
       );
     }
-    const { fullname, email } = req.user;
+    const { _id } = req.user;
 
     const application = await Application.find({ "recruiterID.user": _id });
 
