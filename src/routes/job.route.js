@@ -17,6 +17,6 @@ router.route("/updatejob/:id").patch(verifyJWT, updateJob)
 router.route("/deleteJob/:id").delete(verifyJWT, deleteJob)
 router.route("/getMyPostedJobs").get(verifyJWT, getMyPostedJobs)
 router.route("/getAllJobs").get(verifyJWT, getAllJobs);
-router.route("/getAJob").get(verifyJWT, getAJob);
+router.route("/getAJob:id").get(verifyJWT, getAJob);
 
 export default router
