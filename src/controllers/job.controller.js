@@ -147,11 +147,28 @@ const getAllJobs = asyncHandler( async (req, res) => {
     }
 })
 
+const getAJob = asyncHandler( async (req, res) => {
+    const {id} = req.params;
+    try {
+        const job = await Job.findById(id);
+        if(!job){
+            throw new ApiError(404, "Job Not Found");
+        }
+        return res
+        .status(200)
+        .json(
+            new ApiResponse(200, job, "job fetched successfully")
+        )
+    } catch (error) {
+        throw new ApiError(500, error.message)
+    }
+})
 
 export {
     getAllJobs,
     postJob,
     getMyPostedJobs,
     updateJob,
-    deleteJob
+    deleteJob,
+    getAJob
 }

@@ -5,7 +5,8 @@ import {
     postJob,
     getMyPostedJobs,
     updateJob,
-    deleteJob
+    deleteJob,
+    getAJob
 } from "../controllers/job.controller.js";
 
 const router = Router();
@@ -16,5 +17,6 @@ router.route("/updatejob/:id").patch(verifyJWT, updateJob)
 router.route("/deleteJob/:id").delete(verifyJWT, deleteJob)
 router.route("/getMyPostedJobs").get(verifyJWT, getMyPostedJobs)
 router.route("/getAllJobs").get(verifyJWT, getAllJobs);
+router.route("/getAJob").get(verifyJWT, getAJob);
 
 export default router
