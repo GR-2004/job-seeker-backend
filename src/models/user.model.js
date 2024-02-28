@@ -5,15 +5,11 @@ import validator from "validator";
 
 const userSchema = new mongoose.Schema(
     {
-        username: {
+        fullname: {
             type: String,
-            require: [true, "Please provide your email"],
-            unique: true,
-            lowercase: true,
-            minlength: [3, "name must contain at least 3 characters!"],
-            maxlength: [10, "name cannot exceed 10 characters!"],
-            trim: true,
-            index: true
+            required: [true, "Please enter your Name!"],
+            minLength: [3, "Name must contain at least 3 Characters!"],
+            maxLength: [30, "Name cannot exceed 30 Characters!"],
         },
         email: {
             type: String,
@@ -23,14 +19,9 @@ const userSchema = new mongoose.Schema(
             require: [true, "Please provide your email"],
             validate: [validator.isEmail, "please provide a valid email"]
         },
-        fullname: {
-            type: String,
-            required: true,
-            trim: true,
-            index: true,
-        },
         phone: {
             type: String,
+            unique: true,
             required: [true, "please provide your phone number..."],
             validate: [validator.isMobilePhone, "please provide a valid mobile number"]
         },
@@ -73,7 +64,6 @@ userSchema.methods.generateAccessToken = function (){
             _id: this._id,
             fullname: this.fullname,
             email: this.email,
-            username: this.username
         },
         process.env.ACCESS_TOKEN_SECRET,
         {
