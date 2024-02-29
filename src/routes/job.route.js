@@ -13,7 +13,7 @@ const router = Router();
 
 //secured routes
 router.route("/postJob").post(verifyJWT, postJob)
-router.route("/updatejob/:id").patch(verifyJWT, updateJob)
+router.route("/updatejob/:id").put(verifyJWT, updateJob)
 router.route("/deleteJob/:id").delete(verifyJWT, deleteJob)
 router.route("/getMyPostedJobs").get(verifyJWT, getMyPostedJobs)
 router.route("/getAllJobs").get(verifyJWT, getAllJobs);

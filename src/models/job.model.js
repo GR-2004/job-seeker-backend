@@ -12,7 +12,7 @@ const jobSchema = new mongoose.Schema(
             type: String,
             required: true,
             minlength: [3, "description must contain at least 3 characters!"],
-            maxlength: [100, "description cannot exceed 50 characters!"],
+            maxlength: [200, "description cannot exceed 200 characters!"],
         },
         category: {
             type: String,
@@ -23,7 +23,7 @@ const jobSchema = new mongoose.Schema(
             required: true
         },
         salary: {
-            type: Number,
+            type: String,
             required: true
         },
         requiredExperience: {
@@ -31,7 +31,7 @@ const jobSchema = new mongoose.Schema(
             required: true,
         },
         requiredSkills: {
-            type: [String],
+            type: String,
             required: true,
         },
         employmentType: {
@@ -45,7 +45,6 @@ const jobSchema = new mongoose.Schema(
         postedBy: {
             type: mongoose.Schema.Types.ObjectId,
             ref: "User",
-            required: true,
         },  
         expired: {
             type: Boolean,
