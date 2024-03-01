@@ -22,26 +22,41 @@ const uploadOnCloudinary = async(localFilePath) => {
     }
 }
 
-const deleteFromCloudinary = (publicid, resourceType) => {
-    if(!publicid) return "public id not found"
-     // Note: The public ID value for images and videos should not include a file extension. Include the file extension for raw files only.
-    const urlArray = publicid.split('/')
-    console.log(urlArray)
-    const image = urlArray[urlArray.length - 1]
-    console.log(image)
-    const imageName = image.split('.')[0];
-    console.log(imageName)
+const deleteFromCloudinary = (publicId) => {
+    if (!publicId) return Promise.reject("Public ID not found");
 
+    // Determine the resource type based on the file extension
+    const extension = publicId.split('.').pop().toLowerCase();
+    let resourceType;
+
+    if (extension === 'jpg' || extension === 'jpeg' || extension === 'png') {
+        resourceType = 'image';
+    } else if (extension === 'pdf') {
+        resourceType = 'raw';
+    } else {
+        return Promise.reject("Unsupported file type");
+    }
+
+    // Extract the image name from the public ID
+    const imageName = publicId.split('/').pop().split('.')[0];
+
+    // Construct the options object for the destroy method
+    const options = {
+        resource_type: resourceType
+    };
+
+    // Return a promise that resolves or rejects based on the Cloudinary delete operation
     return new Promise((resolve, reject) => {
-        cloudinary.uploader.destroy(imageName,{ resource_type: resourceType }, (error, result) => {
-            if(err){
-                reject(error)
-            }
-            else{
-                resolve(result)
+        cloudinary.uploader.destroy(imageName, options, (error, result) => {
+            if (error) {
+                reject(error);
+            } else {
+                resolve(result);
             }
         });
     });
-}
+};
+
+
 
 export {uploadOnCloudinary, deleteFromCloudinary}

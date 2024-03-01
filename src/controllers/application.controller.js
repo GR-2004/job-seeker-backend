@@ -4,7 +4,8 @@ import { asyncHandler } from "../utils/asyncHandler.js";
 import mongoose from "mongoose";
 import { Application } from "../models/application.model.js";
 import { Job } from "../models/job.model.js";
-import { uploadOnCloudinary } from "../utils/cloundinary.js";
+import { uploadOnCloudinary, deleteFromCloudinary } from "../utils/cloundinary.js";
+
 
 const recruiterGetAllApplications = asyncHandler(async (req, res) => {
   try {
@@ -77,6 +78,15 @@ const jobSeekerDeleteApplication = asyncHandler(async (req, res) => {
     if (!application) {
       throw new ApiError(404, "application not found");
     }
+    const resumeID = application.resume
+    console.log(resumeID)
+    await deleteFromCloudinary(resumeID)
+    .then(result => {
+      console.log("Resource deleted successfully:", result);
+    })
+    .catch(error => {
+      console.error("Error deleting resource:", error);
+    });
     const deletedApplication = await application.deleteOne();
 
     return res
