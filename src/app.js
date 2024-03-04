@@ -26,4 +26,15 @@ app.use("/api/v1/users", userRouter);
 app.use("/api/v1/applications", applicationRouter);
 app.use("/api/v1/jobs", jobRouter);
 
+app.get("/", (req, res, next) => {
+  try {
+    return res.status(200).json({
+      success: true,
+      message: "hello world",
+    });
+  } catch (error) {
+    console.log(error)
+  }
+});
+
 export default app;
